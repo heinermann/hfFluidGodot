@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://3gmusmywkbmj"]
+[gd_scene load_steps=11 format=3 uid="uid://drffgku3ubbi8"]
 
-[ext_resource type="Script" path="res://scenes/Test3D.gd" id="1_03h4g"]
-[ext_resource type="Shader" uid="uid://warup115bkmd" path="res://shaders/watervisual.tres" id="3_cdi5p"]
+[ext_resource type="Script" path="res://scenes/Test3DCPU.gd" id="1_ru8ag"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_76h4f"]
 sky_top_color = Color(0.32549, 0.556863, 0.952941, 1)
@@ -26,18 +25,18 @@ size = Vector3(1, 1, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_d8r4x"]
 size = Vector3(1, 1, 10)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0kerx"]
-render_priority = 0
-shader = ExtResource("3_cdi5p")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ey20"]
+transparency = 1
+albedo_color = Color(0, 0.819608, 0.831373, 0.482353)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_r18jk"]
-material = SubResource("ShaderMaterial_0kerx")
+material = SubResource("StandardMaterial3D_0ey20")
 size = Vector2(9, 9)
 subdivide_width = 500
 subdivide_depth = 500
 
 [node name="Test3d" type="Node3D"]
-script = ExtResource("1_03h4g")
+script = ExtResource("1_ru8ag")
 
 [node name="FPSLabel" type="Label" parent="."]
 offset_right = 40.0
@@ -111,16 +110,6 @@ skeleton = NodePath("../../Floor")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Pool/Wall4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, 0)
 shape = SubResource("BoxShape3D_d8r4x")
-
-[node name="Simulation" type="SubViewport" parent="."]
-size = Vector2i(514, 514)
-
-[node name="ColorRect" type="ColorRect" parent="Simulation"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="WaterMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.765467, 0)
